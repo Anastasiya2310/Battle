@@ -15,11 +15,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index_bundle.js",
+    publicPath: '/'
   },
-  mode: "development",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   plugins: [
     new HtmlWebpackPlugin({
       template: 'app/index.html'
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 }
